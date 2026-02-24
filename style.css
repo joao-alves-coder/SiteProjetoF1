@@ -1,0 +1,455 @@
+/* ================= RESET ================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    overflow-x:hidden;
+    background:#000;
+}
+
+/* ================= NAVBAR ================= */
+.navbar{
+    position:fixed;
+    top:0;
+    width:100%;
+    height:90px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 60px;
+    background:rgba(255, 255, 255, 0.538);
+    backdrop-filter:blur(10px);
+    transition:all 0.4s ease;
+    z-index:1000;
+}
+
+.navbar.scrolled{
+    background:rgba(255,255,255,0.92);
+    height:70px;
+    box-shadow:0 4px 20px rgba(255, 0, 0, 0.15);
+    border-radius: 10px;
+}
+
+.logo img{
+    height:90px;
+    transition:0.4s;
+}
+
+.nome{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:8px;
+    font-size:42px;
+    transition:all 0.5s ease;
+}
+
+.navbar.scrolled .nome{
+    left:140px;
+    transform:none;
+    font-size:28px;
+}
+
+.nome span:first-child{
+    font-family:'Playball', cursive;
+    color:#e10600;
+}
+
+.nome span:last-child{
+    font-family:'Audiowide', sans-serif;
+    color:black;
+}
+
+/* ================= REDES ================= */
+.redes{
+    display:flex;
+    gap:28px;
+}
+
+.redes a{
+    position:relative;
+    text-decoration:none;
+}
+
+.redes i{
+    font-size:22px;
+    color:black;
+    transition:0.3s ease;
+}
+
+.redes a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-6px;
+    width:0%;
+    height:2px;
+    background:#e10600;
+    transition:width 0.3s ease;
+}
+
+.redes a:hover::after{
+    width:100%;
+}
+
+.redes i:hover{
+    color:#e10600;
+    transform:scale(1.2);
+}
+
+/* ================= HERO ================= */
+.hero{
+    background:url('fundo.Gabriel.Bortoleto.jpg') no-repeat center 25%;
+    background-size:cover;
+    height:100vh;
+    position:relative;
+    overflow:hidden;
+    animation:motorVibrando 0.05s infinite alternate;
+}
+
+.overlay{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:black;
+    opacity:0;
+    pointer-events:none;
+}
+
+/* ================= BOTÃO HERO ================= */
+.btn-proxima{
+    position:absolute;
+    left:40px;
+    bottom:40px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+    text-decoration:none;
+    background:transparent;
+    color:white;
+    font-family:'Audiowide', sans-serif;
+    font-size:20px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    z-index:10;
+    transition:transform 0.15s ease;
+}
+
+.btn-proxima::before{
+    content:"";
+    position:absolute;
+    top:-20px;
+    left:-40px;
+    width:180%;
+    height:2px;
+    background:linear-gradient(to right, transparent 0%, #e10600 15%, #e10600 85%, transparent 100%);
+    opacity:0.7;
+    transition:all 0.4s ease;
+}
+
+.btn-proxima::after{
+    content:"";
+    position:absolute;
+    top:50%;
+    left:-150%;
+    width:120%;
+    height:2px;
+    background:linear-gradient(to right, transparent, rgba(225,6,0,0.9), transparent);
+    transform:translateY(-50%);
+    opacity:0;
+}
+
+.btn-proxima span{
+    transition:opacity 0.3s ease, transform 0.3s ease;
+}
+
+.btn-proxima i{
+    font-size:34px;
+    color:#e10600;
+    transition:all 0.3s ease;
+}
+
+.btn-proxima:hover span{
+    opacity:0;
+    transform:translateY(-6px);
+}
+
+.btn-proxima:hover i{
+    transform:scale(2);
+    color:white;
+    filter:drop-shadow(0 0 15px #e10600);
+}
+
+.btn-proxima:hover::before{
+    height:4px;
+    opacity:1;
+    box-shadow:0 0 15px #e10600;
+}
+
+.btn-proxima:hover::after{
+    animation:velocidade 0.6s ease forwards;
+    opacity:1;
+}
+
+@keyframes velocidade{
+    0%{ left:-150%; opacity:0; }
+    50%{ opacity:1; }
+    100%{ left:150%; opacity:0; }
+}
+
+.btn-proxima:active{
+    transform:scale(0.92);
+}
+
+/* ================= FAÍSCAS ================= */
+.faiscas{
+    position:absolute;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+.faisca{
+    position:absolute;
+    background:#e10600;
+    border-radius:50%;
+    opacity:0.8;
+    box-shadow:0 0 10px #e10600,0 0 15px #ff4d4d;
+    animation:subir 3s linear infinite;
+}
+
+@keyframes subir{
+    0%{ transform: translateY(100vh) scale(0.5); opacity:0; }
+    30%{ opacity:1; }
+    100%{ transform: translateY(-10vh) scale(1); opacity:0; }
+}
+
+/* ================= SEGUNDA ================= */
+.segunda{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:120px 80px;
+    overflow:hidden;
+}
+
+.light-spot{
+    position:absolute;
+    width:600px;
+    height:600px;
+    background:radial-gradient(circle, rgba(225,6,0,0.25) 0%, transparent 70%);
+    pointer-events:none;
+    transform:translate(-50%, -50%);
+    z-index:1;
+}
+
+.segunda-container{
+    position:relative;
+    z-index:2;
+    display:flex;
+    align-items:center;
+    gap:80px;
+    max-width:1300px;
+}
+
+.segunda-imagem img{
+    height:90vh;
+    max-height:700px;
+    object-fit:contain;
+    filter:drop-shadow(0 0 60px rgba(225,6,0,0.6));
+    margin-left:-100px;
+}
+
+.segunda-texto{
+    max-width:550px;
+}
+
+.segunda-texto h2{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:48px;
+    margin-bottom:20px;
+    color:white;
+    line-height:1.2;
+}
+
+.segunda-texto h2 span{
+    display:block;
+}
+
+.segunda-texto h2 a.audi{
+    color:white;
+    text-decoration:none;
+    transition: color 0.3s ease;
+}
+
+.segunda-texto h2 a.audi:hover{
+    color:#e10600;
+}
+
+.segunda-texto p:first-of-type{
+    font-family:'Playball', cursive;
+    font-size:28px;
+    font-weight:bold;
+    color:#e10600;
+    margin-bottom:8px;
+    margin-top:40px;
+}
+
+.segunda-texto p:last-of-type{
+    font-size:20px;
+    color:white;
+    margin-bottom:40px;
+}
+
+/* ================= BOTÃO CARREIRA ================= */
+.btn-carreira{
+    display:block;
+    position:relative;
+    padding:14px 30px;
+    font-family:'Audiowide', sans-serif;
+    font-size:18px;
+    color:white;
+    background:linear-gradient(135deg, #e10600, #ff4d4d);
+    border:2px solid #e10600;
+    border-radius:50px;
+    text-transform:uppercase;
+    text-decoration:none;
+    letter-spacing:2px;
+    overflow:hidden;
+    margin:40px auto 0 auto;
+    box-shadow:0 5px 15px rgba(225,6,0,0.5);
+    cursor:pointer;
+    transition:0.4s ease;
+}
+
+.carro{
+    position:absolute;
+    left:0px;
+    top:50%;
+    transform:translateY(-50%);
+    width:40px;
+    height:25px;
+    background:url('carro-f1.png') no-repeat center/contain;
+    pointer-events:none;
+    transition:left 1s ease-in-out;
+}
+
+.btn-carreira.clicked .carro{
+    left:calc(100% - 50px);
+}
+
+/* ================= TERCEIRA ================= */
+.terceira{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:
+        linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)),
+        url('melbourne-australia.avif') no-repeat center center;
+    background-size:cover;
+    padding:120px 20px;
+}
+
+.corrida-container{
+    text-align:center;
+    color:white;
+}
+
+.terceira h2{
+    font-family:'Audiowide', sans-serif;
+    font-size:64px;
+    margin-bottom:60px;
+    letter-spacing:3px;
+    text-transform: uppercase;
+}
+
+.corrida-card{
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+    padding:60px 100px;
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,0.2);
+    box-shadow:0 20px 40px rgba(0,0,0,0.6);
+    transition:0.4s ease;
+    max-width:700px;
+}
+
+.corrida-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 25px 50px rgba(225,6,0,0.4);
+}
+
+.corrida-card h3{
+    font-family:'Audiowide', sans-serif;
+    font-size:36px;
+    color:#e10600;
+    margin-bottom:20px;
+}
+
+.data{
+    font-size:28px;
+    font-weight:bold;
+    margin-bottom:30px;
+}
+
+.local{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:15px;
+    font-size:22px;
+    margin-bottom:40px;
+}
+
+.local i{
+    color:#e10600;
+}
+
+/* LINKS DO CARD */
+
+.corrida-links{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+.link-box{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px 28px;
+    border-radius:40px;
+    text-decoration:none;
+    font-family:'Audiowide', sans-serif;
+    font-size:16px;
+    background:rgba(255, 255, 255, 0.195);
+    border:1px solid rgba(255, 255, 255, 0);
+    color:white;
+    transition:all 0.3s ease;
+}
+
+.link-box i{
+    font-size:18px;
+    color:#e10600;
+}
+
+.link-box:hover{
+    background:#e10600;
+    transform:translateY(-4px);
+    box-shadow:0 10px 20px rgba(225,6,0,0.4);
+}
+
+.link-box:hover i{
+    color:white;
+}
